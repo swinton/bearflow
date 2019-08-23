@@ -28,3 +28,7 @@ jobs:
       with:
         name: Bearflow.alfredworkflow
         path: Bearflow.alfredworkflow
+    - name: Release
+      if: startsWith( github.ref, refs/tags/ )
+      run: |
+        echo "[TODO] Release 🚀"
