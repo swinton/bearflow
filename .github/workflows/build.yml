@@ -20,6 +20,9 @@ jobs:
     - name: Create artifact
       run: |
         zip --junk-paths Bearflow.alfredworkflow src/* images/*
+    - name: Verify artifact
+      run: |
+        unzip -l Bearflow.alfredworkflow
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
