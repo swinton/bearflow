@@ -22,5 +22,6 @@ jobs:
         zip --junk-paths Bearflow.alfredworkflow src/* images/*
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
-      name: Bearflow.alfredworkflow
-      path: Bearflow.alfredworkflow
+      with:
+        name: Bearflow.alfredworkflow
+        path: Bearflow.alfredworkflow
