@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.github.swinton.bearflow</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>05A9E457-9023-412F-B1A1-CF1E0C67D12C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8CB4E008-C341-4191-A07B-41B76241CC53</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Steve Winton</string>
+	<key>description</key>
+	<string>🐻❤️</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Bearflow</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>note</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Start a new note</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>05A9E457-9023-412F-B1A1-CF1E0C67D12C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>#!/usr/bin/env python
+
+import sys
+import datetime
+import urllib
+import subprocess
+
+
+def quote(s):
+    return urllib.quote(s)
+
+
+def tags():
+    today = datetime.datetime.now()
+    return today.strftime('#%Y/%m/%d')
+
+
+def template(title):
+    template = (
+        "# {}".format(title),
+        "",
+        "___",
+        "{}".format(tags())
+    )
+    return "\n".join(template)
+
+
+def bear(note):
+    uri = "bear://x-callback-url/create?text={}".format(quote(note))
+    subprocess.check_output("open {}".format(uri).split(" "))
+    return uri
+
+
+def main(title):
+    note = template(title)
+    return bear(note)
+
+
+main(" ".join(sys.argv[1:]))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8CB4E008-C341-4191-A07B-41B76241CC53</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>05A9E457-9023-412F-B1A1-CF1E0C67D12C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>110</integer>
+		</dict>
+		<key>8CB4E008-C341-4191-A07B-41B76241CC53</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>110</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/swinton</string>
+</dict>
+</plist>
