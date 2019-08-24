@@ -30,5 +30,7 @@ jobs:
         path: Bearflow.alfredworkflow
     - name: Release
       if: startsWith( github.ref, 'refs/tags/' )
+      env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
       run: |
         ./script/release.sh
